@@ -25,3 +25,15 @@ print(thislist)
 vegies = [ "potato","tomato","frenich"]
 thislist.extend(vegies) # merge two list or any two iterables  list and set, list and array, list and tuple .
 print(thislist)
+
+
+vegies.pop() # removes specific index or removes the last item
+vegies.remove("potato")  #remove first occurance of specified item
+
+del thislist[0]
+
+mamles = ["elephant","whale"]
+mamles.clear()
+
+print(len(mamles))
+
