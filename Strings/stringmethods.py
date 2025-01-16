@@ -2,9 +2,9 @@ x = "simformsolutions"
 f'''
 capitalize()	Converts the first character to upper case  {print(x.capitalize())}
 casefold()	Converts string into lower case{print(x.casefold())}
-center()	Returns a centered string {print(x.center())}
+center()	Returns a centered string {print(x.center(5))}
 count()	Returns the number of times a specified value occurs in a string{print(x.count('s'))}
-encode()	Returns an encoded version of the string {print(x.encode('s'))}
+encode()	Returns an encoded version of the string {print(x.encode(encoding="ascii"))}
 endswith()	Returns true if the string ends with the specified value{print(x.endswith('x'))}
 expandtabs()	Sets the tab size of the string {print(x.expandtabs(6))}
 find()	Searches the string for a specified value and returns the position of where it was found   {print(x.find('sol'))} 
