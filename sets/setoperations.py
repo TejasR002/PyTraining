@@ -46,6 +46,7 @@ x = kick(emp)
 print(x)
 
 
-
+p_emp.remove("tanisha")
+print(p_emp)
 
 
