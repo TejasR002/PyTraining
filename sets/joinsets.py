@@ -64,5 +64,8 @@ print("symmetric difference",sydiffset)
 s11 = se1 ^ set2
 print(s11)
 #symmetric differnece update  gives the (union - intersection)  gives not present in both
+set1 = {"apple", "banana", "cherry"}
+set2 = {"google", "microsoft", "apple"}
+set1.symmetric_difference_update(set2)
 
-
+print(set1)
