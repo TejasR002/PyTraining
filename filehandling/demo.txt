@@ -1,0 +1,2 @@
+Hey this is demofile
+I am writing into this file The file is being written in append mode
