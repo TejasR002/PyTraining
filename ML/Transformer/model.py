@@ -41,3 +41,39 @@ class PositionalEncoding(nn.Module):
     def forward(self,x):
         x = x+ (self.pe[:,:x.shape[1],:]).requires_grad_(False)
         return self.dropout(x)
+    
+class LayerNormalization(nn.Module):
+    def __init__(self,eps:float = 10**-6):
+        super().__init__()
+        self.eps = eps
+        self.alpha = nn.Parameter(torch.ones(1)) # multiplied
+        self.bias = nn.Parameter(torch.ones(1)) # added
+
+    def forward(self,x):
+        mean = x.mean(dim = -1,keepdim = True)
+        std = x.std(dim = -1,keepdim = True)
+        return self.alpha * (x -mean) / (std + self.eps) + self.bias
+    
+class FeedForwardBlock(nn.Module):
+
+    def __init__(self,d_model:int,d_ff:int,dropout:float) -> None:
+        super().__init__()
+        self.linear_1 =nn.Linear(d_model,d_ff)
+        self.dropout = nn.Dropout(dropout)
+        self.linear_2 = nn.Linear(d_ff,d_model)
+
+    def forward(self,x):
+        return self.linear_2(self.dropout(torch.relu(self.linear_1)))
+    
+class MultiHeadAttentionBlock(nn.Module):
+
+    def __init__(self, d_model:int,h:int,dropout:float) -> None:
+        super().__init__()
+        self.d_model = d_model
+        self.h = h
+        assert d_model % h == 0, "d_model is nt divisible by h" 
+
+        self.d_k = d_model // h
+        self.w_q  = nn.Linear(d_model,d_model) #wq
+        self.w_k = nn.Linear(d_model,d_model)  #wk
+        self.w_v = nn.Linear(d_model,d_model)  #wv
