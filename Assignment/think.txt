@@ -1,0 +1,14 @@
+
+QUESTION 1 :
+FIRST
+->get string 
+-> iterate single single element 
+-> store it into the temp 
+-> maintain start, end position 
+-> check  ( end - start) = 3 | 4 | 5.
+->find into the dictionary
+->get value from dictionary.
+->add to result.
+SECOUND 
+
+-> 

@@ -1,0 +1,50 @@
+#DataBase Creation
+->create database db;
+
+#Change database
+->\c db;
+
+#list database
+-> \l
+
+#list tables
+-> \d
+
+#delete database
+->drop db;
+
+
+
+
+
+
+
+#create table 
+-> create table salary(emp_id int,salary int,bonus int);
+ create table sports(id int,name varchar(100),activity_enrolled varchar(70));
+
+
+#select ascending 
+select * from student order by id asc;
+
+
+#add variable to table 
+alter table student add username varchar(300);
+
+
+#update table values
+update student set address  = 'UP' where name  = 'rohan';
+update student set username = concat(student.name,student.age);
+
+
+#insert values 
+insert into employee values(1,'shubh',23,'frontend','A'),(2,'ashish',22,'java','B'),(3,'harsh',22,'backend','B'),(4,'naimish',23,'webdev','A'),(5,'dhruv',22,'react','A'),(6,'nikhil',23,'IOT','C'),(7,'krish',22,'IT','D'),(8,'prit',23,'AIML','F'),(9,'joshi',24,'BDE','A'),(10,'aryan',23,'PR','D');
+
+
+#DROP
+ALTER TABLE SALARY DROP COLUMN BONUS;
+
+#Group by 
+
+
+#HAVING

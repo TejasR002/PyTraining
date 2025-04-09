@@ -1,0 +1,154 @@
+
+#JOINS
+
+INNER JOIN:-> Returns records that have matching values in both tables
+LEFT JOIN:-> Returns all records from the left table, and the matched records from the right table
+RIGHT JOIN:-> Returns all records from the right table, and the matched records from the left table
+FULL JOIN:-> Returns all records when there is a match in either left or right table
+
+
+EMPLOYEE TABLE -: 
+ emp_id | emp_name | emp_age | emp_depart | emp_exp 
+--------+----------+---------+------------+---------
+      1 | shubh    |      23 | frontend   | A
+      2 | ashish   |      22 | java       | B
+      3 | harsh    |      22 | backend    | B
+      4 | naimish  |      23 | webdev     | A
+      5 | dhruv    |      22 | react      | A
+      6 | nikhil   |      23 | IOT        | C
+      7 | krish    |      22 | IT         | D
+      8 | prit     |      23 | AIML       | F
+      9 | joshi    |      24 | BDE        | A
+     10 | aryan    |      23 | PR         | D
+
+SALARY TABLE: ->
+ emp_id | salary | bonus 
+--------+--------+-------
+      1 |  50000 |     0
+      2 |  63332 |     0
+      3 |  54000 |     0
+      4 |  59852 |     0
+      5 |  68975 |     0
+      6 |  85695 |     0
+      7 |  40000 |     0
+      8 |  45441 |     0
+      9 |  56500 |     0
+     10 |  85666 |     0
+(10 rows)
+
+
+
+
+STUDENT TABLE: ->
+demo=# select * from student;
+
+ id |  name   | age |                      address                       |    dob     
+----+---------+-----+----------------------------------------------------+------------
+  3 | tanisha |  22 | punjab                                             | 
+  4 | prit    |  23 | bombay                                             | 
+  1 | arjun   |  23 | UP                                                 | 2002-12-28
+  2 | rohan   |  22 | UP                                                 | 
+  5 | tejas   |  24 | gujarat                                            | 2006-07-26
+  6 | shubh   |  24 | gujarat                                            | 2004-05-20
+
+SPORTS TABLE: ->
+
+ id |  name   | activity_enrolled 
+----+---------+-------------------
+  1 | arjun   | Cricket
+  2 | tanisha | badminton
+  3 | jay     | football
+  4 | prit    | foosball
+
+
+`INNER JOIN`
+
+QUERY ->select salary.emp_id,emp_name,emp_depart,salary,emp_age,emp_exp from employee inner join salary on employee.emp_id=salary.emp_id;
+
+TABLE:->
+emp_id | emp_name | emp_depart | salary | emp_age | emp_exp 
+--------+----------+------------+--------+---------+---------
+      1 | shubh    | frontend   |  50000 |      23 | A
+      2 | ashish   | java       |  63332 |      22 | B
+      3 | harsh    | backend    |  54000 |      22 | B
+      4 | naimish  | webdev     |  59852 |      23 | A
+      5 | dhruv    | react      |  68975 |      22 | A
+      6 | nikhil   | IOT        |  85695 |      23 | C
+      7 | krish    | IT         |  40000 |      22 | D
+      8 | prit     | AIML       |  45441 |      23 | F
+      9 | joshi    | BDE        |  56500 |      24 | A
+     10 | aryan    | PR         |  85666 |      23 | D
+
+
+LEFT JOIN
+
+QUERY :->  select * from student left join sports on student.id = sports.id;
+
+table:->
+
+ id |  name   | age |                      address               |    dob     | id |  name   | activity_enrolled 
+----+---------+-----+--------------------------------------------+------------+----+---------+---------
+  3 | tanisha |  22 | punjab                                     |            |  3 | jay     | football
+  4 | prit    |  23 | bombay                                     |            |  4 | prit    | foosball
+  1 | arjun   |  23 | UP                                         | 2002-12-28 |  1 | arjun   | Cricket
+  2 | rohan   |  22 | UP                                         |            |  2 | tanisha | badminton
+  5 | tejas   |  24 | gujarat                                    | 2006-07-26 |    |   null  |  null 
+  6 | shubh   |  24 | gujarat                                    | 2004-05-20 |    |   null  |  null 
+(6 rows)
+
+RIGHT JOIN 
+
+QUERY:-> select * FROM STUDENT RIGHT JOIN SPORTS ON STUDENT.ID = SPORTS.ID;
+ id |  name   | age |                      address                       |    dob     | id |  name   | activity_enrolled 
+----+---------+-----+----------------------------------------------------+------------+----+---------+-------------------
+  3 | tanisha |  22 | punjab                                             |            |  3 | jay     | football
+  4 | prit    |  23 | bombay                                             |            |  4 | prit    | foosball
+  1 | arjun   |  23 | UP                                                 | 2002-12-28 |  1 | arjun   | Cricket
+  2 | rohan   |  22 | UP                                                 |            |  2 | tanisha | badminton
+  5 | tejas   |  24 | gujarat                                            | 2006-07-26 |    |         | 
+  6 | shubh   |  24 | gujarat                                            | 2004-05-20 |    |         | 
+
+select STUDENT.NAME,STUDENT.AGE,STUDENT.ID,SPORTS.ACTIVITY_ENROLLED FROM STUDENT FULL JOIN SPORTS ON STUDENT.ID = SPORTS.ID;
+ name   | age | id | activity_enrolled 
+---------+-----+----+-------------------
+ tanisha |  22 |  3 | football
+ prit    |  23 |  4 | foosball
+ arjun   |  23 |  1 | Cricket
+ rohan   |  22 |  2 | badminton
+ tejas   |  24 |  5 |   null
+ shubh   |  24 |  6 |   null
+
+
+CROSS JOIN:-> 
+The CROSS JOIN keyword matches ALL records from the "left" table with EACH record from the "right" table.
+
+That means that all records from the "right" table will be returned for each record in the "left" table.
+
+
+  name   | age | id | activity_enrolled 
+---------+-----+----+-------------------
+ tanisha |  22 |  3 | Cricket
+ prit    |  23 |  4 | Cricket
+ arjun   |  23 |  1 | Cricket
+ rohan   |  22 |  2 | Cricket
+ tejas   |  24 |  5 | Cricket
+ shubh   |  24 |  6 | Cricket
+ tanisha |  22 |  3 | badminton
+ prit    |  23 |  4 | badminton
+ arjun   |  23 |  1 | badminton
+ rohan   |  22 |  2 | badminton
+ tejas   |  24 |  5 | badminton
+ shubh   |  24 |  6 | badminton
+ tanisha |  22 |  3 | football
+ prit    |  23 |  4 | football
+ arjun   |  23 |  1 | football
+ rohan   |  22 |  2 | football
+ tejas   |  24 |  5 | football
+ shubh   |  24 |  6 | football
+ tanisha |  22 |  3 | foosball
+ prit    |  23 |  4 | foosball
+ arjun   |  23 |  1 | foosball
+ rohan   |  22 |  2 | foosball
+ tejas   |  24 |  5 | foosball
+ shubh   |  24 |  6 | foosball
+(24 rows)
